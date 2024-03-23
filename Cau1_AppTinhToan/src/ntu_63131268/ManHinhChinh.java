@@ -230,5 +230,17 @@ public class ManHinhChinh extends JFrame {
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblNewLabel.setBounds(197, 21, 197, 31);
 		contentPane.add(lblNewLabel);
+		
+		JButton btnPT = new JButton("PT Bậc 2");
+		btnPT.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TinhPhuongTrinh tinhPhuongTrinh = new TinhPhuongTrinh();
+		        tinhPhuongTrinh.setVisible(true);
+		        ManHinhChinh.this.setVisible(false); 
+			}
+		});
+		btnPT.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		btnPT.setBounds(80, 422, 202, 31);
+		contentPane.add(btnPT);
 	}
 }
