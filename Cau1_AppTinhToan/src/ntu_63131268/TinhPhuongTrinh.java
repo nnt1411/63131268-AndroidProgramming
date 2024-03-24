@@ -27,6 +27,7 @@ public class TinhPhuongTrinh extends JFrame {
     public TinhPhuongTrinh() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 527, 493);
+        setLocationRelativeTo(null);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
