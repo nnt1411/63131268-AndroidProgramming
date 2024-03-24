@@ -22,6 +22,7 @@ public class TinhPhuongTrinh extends JFrame {
     private JTextField txtKetQua;
     private JLabel lblNewLabel_5;
     private JButton btnBack;
+    private JLabel lblNewLabel_6;
 
     public TinhPhuongTrinh() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -42,7 +43,7 @@ public class TinhPhuongTrinh extends JFrame {
         contentPane.add(txtA);
         txtA.setColumns(10);
 
-        JLabel lblNewLabel_1 = new JLabel("x^2 +");
+        JLabel lblNewLabel_1 = new JLabel("x +");
         lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
         lblNewLabel_1.setBounds(144, 71, 66, 34);
         contentPane.add(lblNewLabel_1);
@@ -50,23 +51,23 @@ public class TinhPhuongTrinh extends JFrame {
         txtB = new JTextField();
         txtB.setFont(new Font("Tahoma", Font.PLAIN, 17));
         txtB.setColumns(10);
-        txtB.setBounds(220, 71, 43, 34);
+        txtB.setBounds(192, 71, 43, 34);
         contentPane.add(txtB);
 
         JLabel lblNewLabel_2 = new JLabel("x +");
         lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        lblNewLabel_2.setBounds(273, 71, 48, 34);
+        lblNewLabel_2.setBounds(245, 69, 48, 34);
         contentPane.add(lblNewLabel_2);
 
         txtC = new JTextField();
         txtC.setFont(new Font("Tahoma", Font.PLAIN, 17));
         txtC.setColumns(10);
-        txtC.setBounds(316, 71, 43, 34);
+        txtC.setBounds(286, 71, 43, 34);
         contentPane.add(txtC);
 
         JLabel lblNewLabel_3 = new JLabel("= 0");
         lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        lblNewLabel_3.setBounds(369, 71, 48, 34);
+        lblNewLabel_3.setBounds(339, 69, 48, 34);
         contentPane.add(lblNewLabel_3);
 
         btnTinh = new JButton("Tính");
@@ -102,6 +103,11 @@ public class TinhPhuongTrinh extends JFrame {
         btnBack.setFont(new Font("Tahoma", Font.PLAIN, 15));
         btnBack.setBounds(381, 24, 104, 21);
         contentPane.add(btnBack);
+        
+        lblNewLabel_6 = new JLabel("2");
+        lblNewLabel_6.setFont(new Font("Tahoma", Font.PLAIN, 12));
+        lblNewLabel_6.setBounds(158, 71, 28, 13);
+        contentPane.add(lblNewLabel_6);
     }
 
     void HamTinhPT(){
