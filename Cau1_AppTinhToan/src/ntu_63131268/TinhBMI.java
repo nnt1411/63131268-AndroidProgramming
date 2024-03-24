@@ -95,5 +95,17 @@ public class TinhBMI extends JFrame {
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNewLabel_2.setBounds(132, 259, 38, 37);
 		contentPane.add(lblNewLabel_2);
+		
+		JButton btnBack = new JButton("TRỞ LẠI");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ManHinhChinh manHinhChinh = new ManHinhChinh();
+				manHinhChinh.setVisible(true);
+		        TinhBMI.this.setVisible(false); 
+			}
+		});
+		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnBack.setBounds(378, 24, 104, 21);
+		contentPane.add(btnBack);
 	}
 }

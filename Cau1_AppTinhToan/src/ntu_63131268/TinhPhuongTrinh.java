@@ -21,6 +21,7 @@ public class TinhPhuongTrinh extends JFrame {
     private JButton btnTinh;
     private JTextField txtKetQua;
     private JLabel lblNewLabel_5;
+    private JButton btnBack;
 
     public TinhPhuongTrinh() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -89,6 +90,18 @@ public class TinhPhuongTrinh extends JFrame {
         lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 17));
         lblNewLabel_5.setBounds(30, 199, 71, 34);
         contentPane.add(lblNewLabel_5);
+        
+        btnBack = new JButton("TRỞ LẠI");
+        btnBack.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		ManHinhChinh manHinhChinh = new ManHinhChinh();
+				manHinhChinh.setVisible(true);
+		        TinhPhuongTrinh.this.setVisible(false);
+        	}
+        });
+        btnBack.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        btnBack.setBounds(381, 24, 104, 21);
+        contentPane.add(btnBack);
     }
 
     void HamTinhPT(){
