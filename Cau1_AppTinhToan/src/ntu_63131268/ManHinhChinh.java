@@ -242,5 +242,17 @@ public class ManHinhChinh extends JFrame {
 		btnPT.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnPT.setBounds(80, 422, 202, 31);
 		contentPane.add(btnPT);
+		
+		JButton btnBMI = new JButton("BMI");
+		btnBMI.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TinhBMI tinhBMI = new TinhBMI();
+				tinhBMI.setVisible(true);
+		        ManHinhChinh.this.setVisible(false); 
+			}
+		});
+		btnBMI.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		btnBMI.setBounds(317, 422, 202, 31);
+		contentPane.add(btnBMI);
 	}
 }
