@@ -9,6 +9,8 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TinhBMI extends JFrame {
 
@@ -56,6 +58,28 @@ public class TinhBMI extends JFrame {
 		contentPane.add(lblNewLabel_1_1);
 		
 		JButton btnTinh = new JButton("TÍNH");
+		btnTinh.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+		            double chieuCao = Double.parseDouble(txtCC.getText()) / 100; // Chuyển chiều cao sang mét
+		            double canNang = Double.parseDouble(txtCN.getText());
+		            double bmi = canNang / (chieuCao * chieuCao);
+
+		            String nhanXet = "";
+		            if (bmi > 25) {
+		                nhanXet = "Thừa cân";
+		            } else if (bmi < 18) {
+		                nhanXet = "Thiếu cân";
+		            } else {
+		                nhanXet = "Bình thường";
+		            }
+
+		            txtKQ.setText(String.format("%.2f - %s", bmi, nhanXet));
+		        } catch (NumberFormatException ex) {
+		            txtKQ.setText("Lỗi nhập liệu");
+		        }
+			}
+		});
 		btnTinh.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnTinh.setBounds(195, 187, 104, 37);
 		contentPane.add(btnTinh);
