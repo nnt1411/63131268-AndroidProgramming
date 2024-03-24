@@ -5,8 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -18,7 +20,7 @@ public class DanhBaAdapter extends BaseAdapter {
     public DanhBaAdapter(Context _context, ArrayList<DanhBa> lsDanhBa)
     {
         this.lsDanhBa = lsDanhBa;
-        this.context = context;
+        this.context = _context;
         this.layoutInflater = LayoutInflater.from(_context);
     }
 
@@ -56,7 +58,18 @@ public class DanhBaAdapter extends BaseAdapter {
         textView_SDT.setText(DSDanhBa.getSoDienThoai());
         imageView_Anh.setImageResource(DSDanhBa.getIdAnh());
 
+        ImageButton btnXoa = viewHienHanh.findViewById(R.id.btnXoa);
+        btnXoa.setTag(position);
+        btnXoa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = (Integer) v.getTag(); // Lấy vị trí từ tag
+                lsDanhBa.remove(position); // Xóa mục ở vị trí đó
+                notifyDataSetChanged(); // Thông báo cập nhật
+                Toast.makeText(context, "Liên hệ đã được xóa", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         return viewHienHanh;
     }
 }
-
