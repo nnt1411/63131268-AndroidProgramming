@@ -32,6 +32,7 @@ public class ManHinhChinh extends JFrame {
 		contentPane.setLayout(null);
 		
 		txtMH = new JTextField();
+		txtMH.setEditable(false);
 		txtMH.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		txtMH.setBounds(80, 73, 431, 47);
 		contentPane.add(txtMH);
