@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    SearchView searchView;
     private ActivityResultLauncher<Intent> themLienHeLauncher;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +33,11 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
+        //Thêm dữ liệu listview
         ListView lvDSDanhBa = (ListView) findViewById(R.id.lvDanhBa);
         ArrayList<DanhBa> dsDanhBa = new ArrayList<DanhBa>();
         dsDanhBa.add(new DanhBa("Thành","0123456789",R.drawable.avatar));
-        dsDanhBa.add(new DanhBa("Hành","0987654321",R.drawable.avatar));
+        dsDanhBa.add(new DanhBa("Cành","0987654321",R.drawable.avatar));
         dsDanhBa.add(new DanhBa("Bành","017852369",R.drawable.avatar));
         dsDanhBa.add(new DanhBa("Sành","0369852147",R.drawable.avatar));
 
@@ -75,6 +78,38 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intentAdd = new Intent(MainActivity.this, ThemLienHe.class);
                 themLienHeLauncher.launch(intentAdd);
+            }
+        });
+
+        //Xử lý sự kiện tìm kiếm liên hệ
+        ArrayList<DanhBa> dsDanhBaFiltered = new ArrayList<>();
+        searchView = findViewById(R.id.search);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                dsDanhBaFiltered.clear(); // Xóa dữ liệu lọc cũ
+                String searchText = newText.toLowerCase();
+
+                if (searchText.isEmpty()) {
+                    dsDanhBaFiltered.addAll(dsDanhBa); // Nếu không có tìm kiếm, hiển thị tất cả
+                } else {
+                    for (DanhBa db : dsDanhBa) {
+                        if (db.getTen().toLowerCase().contains(searchText)) {
+                            dsDanhBaFiltered.add(db); // Thêm vào danh sách lọc nếu khớp
+                        }
+                    }
+                }
+
+                // Cập nhật ListView với danh sách đã lọc
+                DanhBaAdapter adapterFiltered = new DanhBaAdapter(MainActivity.this, dsDanhBaFiltered);
+                lvDSDanhBa.setAdapter(adapterFiltered);
+
+                return true;
             }
         });
 
