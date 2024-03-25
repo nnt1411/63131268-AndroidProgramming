@@ -36,10 +36,10 @@ public class MainActivity extends AppCompatActivity {
         //Thêm dữ liệu listview
         ListView lvDSDanhBa = (ListView) findViewById(R.id.lvDanhBa);
         ArrayList<DanhBa> dsDanhBa = new ArrayList<DanhBa>();
-        dsDanhBa.add(new DanhBa("Thành","0123456789",R.drawable.avatar));
-        dsDanhBa.add(new DanhBa("Cành","0987654321",R.drawable.avatar));
-        dsDanhBa.add(new DanhBa("Bành","017852369",R.drawable.avatar));
-        dsDanhBa.add(new DanhBa("Sành","0369852147",R.drawable.avatar));
+        dsDanhBa.add(new DanhBa("Thanh","0123456789",R.drawable.avatar));
+        dsDanhBa.add(new DanhBa("Canh","0987654321",R.drawable.avatar));
+        dsDanhBa.add(new DanhBa("Banh","017852369",R.drawable.avatar));
+        dsDanhBa.add(new DanhBa("Sanh","0369852147",R.drawable.avatar));
 
         DanhBaAdapter adapter = new DanhBaAdapter(this,dsDanhBa);
         lvDSDanhBa.setAdapter(adapter);
@@ -57,8 +57,19 @@ public class MainActivity extends AppCompatActivity {
                                 // Thêm liên hệ mới vào danh sách và cập nhật adapter
                                 DanhBa danhBaMoi = new DanhBa(ten, soDienThoai, R.drawable.avatar);
                                 dsDanhBa.add(danhBaMoi);
+                                capNhatListView();
                                 adapter.notifyDataSetChanged();
                             }
+                        }
+                    }
+                    // Cập nhật ListView để không lỗi khi thêm mới liên hệ
+                    private void capNhatListView() {
+                        if (searchView.getQuery().toString().isEmpty()) {
+                            // Nếu không có tìm kiếm, hiển thị danh sách gốc
+                            lvDSDanhBa.setAdapter(new DanhBaAdapter(MainActivity.this, dsDanhBa));
+                        } else {
+                            // Nếu có tìm kiếm, áp dụng bộ lọc tìm kiếm
+                            searchView.setQuery(searchView.getQuery(), true);
                         }
                     }
                 }
@@ -92,23 +103,22 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                dsDanhBaFiltered.clear(); // Xóa dữ liệu lọc cũ
-                String searchText = newText.toLowerCase();
-
-                if (searchText.isEmpty()) {
-                    dsDanhBaFiltered.addAll(dsDanhBa); // Nếu không có tìm kiếm, hiển thị tất cả
-                } else {
-                    for (DanhBa db : dsDanhBa) {
-                        if (db.getTen().toLowerCase().contains(searchText)) {
-                            dsDanhBaFiltered.add(db); // Thêm vào danh sách lọc nếu khớp
+                // Kiểm tra newText không phải là null hoặc rỗng
+                if (newText != null && !newText.isEmpty()) {
+                    ArrayList<DanhBa> filteredList = new ArrayList<>();
+                    for (DanhBa item : dsDanhBa) {
+                        if (item.getTen().toLowerCase().contains(newText.toLowerCase()) ||
+                                item.getSoDienThoai().contains(newText)) {
+                            filteredList.add(item);
                         }
                     }
+                    // Cập nhật ListView với danh sách đã lọc
+                    DanhBaAdapter newAdapter = new DanhBaAdapter(MainActivity.this, filteredList);
+                    lvDSDanhBa.setAdapter(newAdapter);
+                } else {
+                    // Nếu không có văn bản tìm kiếm, hiển thị toàn bộ danh sách
+                    lvDSDanhBa.setAdapter(new DanhBaAdapter(MainActivity.this, dsDanhBa));
                 }
-
-                // Cập nhật ListView với danh sách đã lọc
-                DanhBaAdapter adapterFiltered = new DanhBaAdapter(MainActivity.this, dsDanhBaFiltered);
-                lvDSDanhBa.setAdapter(adapterFiltered);
-
                 return true;
             }
         });
