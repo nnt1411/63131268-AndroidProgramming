@@ -31,7 +31,7 @@
 
         <TextView
             android:id="@+id/listCT"
-            android:layout_width="225dp"
+            android:layout_width="246dp"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:text="Chi tiết"
