@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Cau3_AppGioiThieu"
         tools:targetApi="31">
         <activity
+            android:name=".ThongTinSV"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
